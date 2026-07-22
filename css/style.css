@@ -84,6 +84,7 @@ span {
 
 #controles-container {
    display: flex;
+   padding: 0 20px;
    font-size: 1.02em;
    flex-direction: column;
    gap: 10px;
