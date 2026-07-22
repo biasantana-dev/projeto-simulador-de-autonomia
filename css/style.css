@@ -28,7 +28,7 @@ h2 {
 }
 
 .container {
-   margin: 20px 10px;
+   margin: 20px 10px 10px; 
    padding: 15px 0px;
 }
 
@@ -128,11 +128,16 @@ h2 {
 }
 
 #range-container {
-   display: flex;
-   align-items: center;
-   gap: 6px;
-   margin-top: 10px;
-   margin-bottom: 10px;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    gap: 12px;     
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+#range-container .controle-texto {
+    white-space: nowrap;
 }
 
 #brilho {
