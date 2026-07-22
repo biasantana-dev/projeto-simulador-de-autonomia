@@ -24,6 +24,7 @@ h1 {
 h2 {
    font-size: 1.4em;
    padding-bottom: 15px;
+   margin-left: 15px;
 }
 
 p,
@@ -33,8 +34,7 @@ span {
 
 .container {
    margin: 20px 0;
-   border-bottom: #555555 solid 1px;
-   padding: 15px 0;
+   padding: 15px 0px;
 }
 
 #visor {
@@ -84,7 +84,7 @@ span {
 
 #controles-container {
    display: flex;
-   padding: 0 20px;
+   margin: 0 20px;
    font-size: 1.02em;
    flex-direction: column;
    gap: 10px;
