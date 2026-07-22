@@ -199,6 +199,14 @@ i {
       max-width: 600px;
    }
 
+   p {
+      margin-bottom: 10px;
+   }
+
+   #range-container {
+      margin-bottom: 20px;
+   }
+
    .container {
       border-bottom: 1px solid  #424242;
    }  
