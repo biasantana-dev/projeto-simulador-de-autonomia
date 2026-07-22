@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt=br">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Simulador de Autonomia</title>
    <link rel="stylesheet" href="/css/style.css">
-   <script src="js/script.js"></script>
+   <script src="https://kit.fontawesome.com/dfb0291cd2.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-   <header><h1>SIMULADOR DE AUTONOMIA</h1></header>
+   <header>
+      <h1>SIMULADOR DE AUTONOMIA</h1>
+   </header>
    <main>
-      <div id="visor-conteiner">
+      <div class="container" id="visor">
          <div id="bateria-inicial">
             <div id="nivel-bateria"></div>
          </div>
-         <p id="porcentagem-inicial">...</p>
-         <p id="tempo-restante">...</p>
+         <p id="porcentagem-atual">100%</p>
+         <p id="tempo-restante">Tempo Restante: 12h 30m</p>
       </div>
-      <div id="painel-consumo-conteiner">
+      <div class="container">
          <h2>Painel de Consumo:</h2>
-         <div id="controles-conteiner">
-            <input type="checkbox" name="wifi" id="wifi">
-            <label for="wifi">Wi-Fi Ativo</label>
+         <div id="controles-container">
+            <div class="controle-item">
+               <span class="controle-texto"><i class="fa-solid fa-wifi" style="color: rgb(255, 255, 255);"></i> Wi-Fi Ativo</span>
+               <input type="checkbox" name="wifi" id="wifi" class="toggle-checkbox">
+               <label for="wifi" class="toggle-label"></label>
+            </div>
 
-            <input type="checkbox" name="jogo" id="jogo">
-            <label for="jogo">🎮 Modo Jogo (Alta Perf.)</label>
+            <div class="controle-item">
+               <span class="controle-texto"><i class="fa-solid fa-gamepad" style="color: rgb(255, 255, 255);"></i> Modo Jogo (Alta Perf.)</span>
+               <input type="checkbox" name="jogo" id="jogo" class="toggle-checkbox">
+               <label for="jogo" class="toggle-label"></label>
+            </div>
 
-            <div id="range-conteiner">
-               <label for="brilho">☀️ Brilho Máximo</label>
-               <input type="range" name="brilho" id="brilho" min="0" max="100">
+            <div id="range-container">
+               <span class="controle-texto"><i class="fa-solid fa-sun" style="color: rgb(255, 255, 255);"></i>Brilho Máximo</span>
+               <label for="brilho"></label>
+               <input type="range" name="brilho" id="brilho" min="0" max="100" value="100">
                <span>100%</span>
             </div>
          </div>
       </div>
-      <p id="info"></p>
+      <p id="info"><i class="fa-solid fa-circle-info" style="color: rgb(255, 255, 255);"></i>Info: Calculado com base em 5000mAh</p>
    </main>
 </body>
 </html>
