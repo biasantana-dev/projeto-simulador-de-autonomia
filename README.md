@@ -21,3 +21,7 @@ Este projeto foi construído do zero, aplicando os seguintes conceitos e tecnolo
 - Sincronização em tempo real entre inputs do usuário (`checkbox` e `range`) e variáveis de estado no JavaScript.
 - Organização da ordem de execução lógica (garantindo que os cálculos de matemática aconteçam *após* a aplicação dos descontos de consumo).
 - Aplicação de boas práticas de estilização focadas em UX/UI moderna para dispositivos móveis.
+
+## 📷 Demonstração
+
+![Simulador de Autonomia em funcionamento](./img/print-simulador-autonomia.png)
