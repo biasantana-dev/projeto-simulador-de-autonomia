@@ -27,13 +27,8 @@ h2 {
    margin-left: 15px;
 }
 
-p,
-span {
-   margin-bottom: 10px;
-}
-
 .container {
-   margin: 20px 0;
+   margin: 20px 10px;
    padding: 15px 0px;
 }
 
@@ -95,7 +90,7 @@ span {
    display: flex;
    align-items: center;
    gap: 10px;
-   margin-bottom: 15px;
+   margin: 10px 0; 
 }
 
 .toggle-checkbox {
@@ -135,19 +130,19 @@ span {
 #range-container {
    display: flex;
    align-items: center;
-   gap: 10px;
-   margin-top: 5px;
+   gap: 6px;
+   margin-top: 10px;
    margin-bottom: 10px;
 }
 
 #brilho {
    appearance: none;
-   width: 200px;
+   width: 150px;
    height: 8px;
+   margin-top: 4px;
    background: #555555;
    border-radius: 5px;
    outline: none;
-   margin-bottom: x;
 }
 
 #brilho::-webkit-slider-thumb {
@@ -185,6 +180,7 @@ i {
 #info {
    text-align: center;
    margin-top: 30px;
+   font-size: 0.95em;
 }
 
 
@@ -197,6 +193,10 @@ i {
       width: 100%;
       max-width: 600px;
    }
+
+   .container {
+      border-bottom: 1px solid  #424242;
+   }  
 
    #bateria-inicial {
       width: 250px;
@@ -214,5 +214,9 @@ i {
 
    h2 {
       font-size: 1.6em;
+   }
+   
+   #info {
+      font-size: 1em;
    }
 }
