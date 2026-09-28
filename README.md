@@ -8,7 +8,7 @@ Este projeto foi construído do zero, aplicando os seguintes conceitos e tecnolo
 - **HTML5 Semântico:** Estrutura limpa da aplicação.
 - **CSS3 / Flexbox & Responsividade:** Metodologia *Mobile First* com adaptação para telas maiores via `@media queries`.
 - **JavaScript (ES6):** Manipulação do DOM, tratamento de eventos (`change`, `input`), escopo, objetos de configuração e cálculos matemáticos condicionais.
-- **FontAwesome:** Ícones vetoriais modernos.
+- **FontAwesome:** Ícones modernos.
 
 ## 📱 Funcionalidades
 
@@ -19,7 +19,7 @@ Este projeto foi construído do zero, aplicando os seguintes conceitos e tecnolo
 ## 💡 O que aprendi / Desafios Superados
 
 - Sincronização em tempo real entre inputs do usuário (`checkbox` e `range`) e variáveis de estado no JavaScript.
-- Organização da ordem de execução lógica (garantindo que os cálculos de matemática aconteçam *após* a aplicação dos descontos de consumo).
+- Organização da ordem de execução lógica (garantindo que os cálculos de matemática aconteçam após a aplicação dos descontos de consumo).
 - Aplicação de boas práticas de estilização focadas em UX/UI moderna para dispositivos móveis.
 
 ## 📷 Demonstração
