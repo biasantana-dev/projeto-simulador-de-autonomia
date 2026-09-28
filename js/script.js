@@ -17,6 +17,28 @@ const taxasConsumo = {
    brilho: 0.8
 };
 
+async function carregarAparelhos() {
+   try {
+      const resposta = await fetch('http://localhost:3000/api/dispositivos');
+      const aparelhos = await resposta.json();
+
+      const select = document.getElementById('aparelho');
+
+      aparelhos.forEach(aparelho => {
+         const option = document.createElement('option')
+         option.value = aparelho.id;
+         option.textContent = `${aparelho.nome} (${aparelho.bateriamAh}mAh)`;
+
+         option.dataset.consumoBase = aparelho.consumoBase;
+         select.appendChild(option);
+      });
+   } catch (erro) {
+      console.log('Erro ao conectar com a API:', erro);
+   }
+}
+
+carregarAparelhos();
+
 function calcularConsumoAtual() {
    let gasto = taxasConsumo.base;
 

@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "nome": "iPhone 15",
+    "bateriamAh": 3349,
+    "consumoBase": 0.001389
+  },
+  {
+    "id": 2,
+    "nome": "iPhone 15 Pro Max",
+    "bateriamAh": 4422,
+    "consumoBase": 0.001111
+  },
+  {
+    "id": 3,
+    "nome": "iPhone SE (3ª gen)",
+    "bateriamAh": 2018,
+    "consumoBase": 0.001984
+  },
+  {
+    "id": 4,
+    "nome": "Samsung Galaxy A55",
+    "bateriamAh": 5000,
+    "consumoBase": 0.001263
+  },
+  {
+    "id": 5,
+    "nome": "Motorola Moto G84",
+    "bateriamAh": 5000,
+    "consumoBase": 0.001323
+  },
+  {
+    "id": 6,
+    "nome": "Xiaomi Redmi Note 13",
+    "bateriamAh": 5000,
+    "consumoBase": 0.001389
+  },
+  {
+    "id": 7,
+    "nome": "Samsung Galaxy S24",
+    "bateriamAh": 4000,
+    "consumoBase": 0.001543
+  },
+  {
+    "id": 8,
+    "nome": "iPad (10ª Geração)",
+    "bateriamAh": 7580,
+    "consumoBase": 0.002315
+  },
+  {
+    "id": 9,
+    "nome": "Samsung Galaxy Tab A9+",
+    "bateriamAh": 7040,
+    "consumoBase": 0.002525
+  },
+  {
+    "id": 10,
+    "nome": "Notebook Lenovo IdeaPad 3",
+    "bateriamAh": 4500,
+    "consumoBase": 0.004630
+  },
+  {
+    "id": 11,
+    "nome": "MacBook Air M2",
+    "bateriamAh": 4560,
+    "consumoBase": 0.001736
+  }
+]
