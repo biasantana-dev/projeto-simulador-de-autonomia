@@ -90,6 +90,23 @@ function calcularTempoRestante(bateriaRestante, consumoPorSegundo) {
 
    return `${mStr}m ${sStr}s`;
 }
- 
+
+function salvarConfiguracoes() {
+   const configuracoes = {
+      wifi: wifi.checked,
+      redesSociais: redesSociais.checked,
+      jogo: jogo.checked,
+      brilho: brilho.value
+   };
+
+   localStorage.setItem('simuladorConfig', JSON.stringify(configuracoes));
+}
+
+wifi.addEventListener('change', recalcularInterface);
+redesSociais.addEventListener('change', recalcularInterface);
+jogo.addEventListener('change', recalcularInterface);
+
+brilho.addEventListener('input', recalcularInterface);
+
 meuTimer = setInterval(drenarBateria, 1000);
 atualizarVisor(taxasConsumo.base);
