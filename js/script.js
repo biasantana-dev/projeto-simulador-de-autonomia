@@ -17,6 +17,25 @@ const taxasConsumo = {
    brilho: 0.8
 };
 
+function calcularConsumoAtual() {
+   let gasto = taxasConsumo.base;
+
+   if (wifi.checked) gasto += taxasConsumo.wifi;
+   if (redesSociais.checked) gasto += taxasConsumo.redes;
+   if (jogo.checked) gasto += taxasConsumo.jogo;
+
+   
+   let percentualBrilho = brilho.value / 100;
+   gasto += (taxasConsumo.brilho * percentualBrilho);
+
+   return gasto;
+}
+
+function recalcularInterface() {
+   const gastoAtual = calcularConsumoAtual();
+   atualizarVisor(gastoAtual);
+}
+
 function drenarBateria() {
    if (bateriaAtual <= 0) {
       bateriaAtual = 0;
@@ -24,15 +43,8 @@ function drenarBateria() {
       atualizarVisor(0);
       return;
    }
-
-   let gastoDesseCiclo = taxasConsumo.base;
-   if (wifi.checked) gastoDesseCiclo += taxasConsumo.wifi;
-   if (redes.checked) gastoDesseCiclo += taxasConsumo.redes;
-   if (jogo.checked) gastoDesseCiclo += taxasConsumo.jogo;
-
-   let percentualBrilho = brilho.value / 100;
-   gastoDesseCiclo += (taxasConsumo.brilho * percentualBrilho);
    
+   const gastoDesseCiclo = calcularConsumoAtual();
    bateriaAtual -= gastoDesseCiclo;
 
    atualizarVisor(gastoDesseCiclo);
@@ -56,16 +68,28 @@ function atualizarVisor(taxasDeGasto) {
       nivelBateria.style.backgroundColor = '#4caf50'
    }
 
-   if (taxasDeGasto > 0 && bateriaExibida > 0) {
-      const ciclosRestantes = Math.floor(bateriaExibida / taxasDeGasto);
-      const minutos = Math.floor(ciclosRestantes / 60);
-      const segundos = ciclosRestantes % 60;
-
-      tempoRestante.innerText = `Tempo Restante: ${minutos}m ${segundos}s`;
-   } else if (bateriaExibida === 0) {
-      tempoRestante.innerText = 'Bateria Esgotada';
-   }
+   tempoRestante.innerText = 'Tempo Restante: ' + calcularTempoRestante(bateriaExibida, taxasDeGasto);
 }
 
+function calcularTempoRestante(bateriaRestante, consumoPorSegundo) {
+   if (consumoPorSegundo <= 0 || bateriaRestante <= 0) return 'Bateria esgotada';
+
+   const segundosTotais = Math.floor(bateriaRestante / consumoPorSegundo);
+
+   const horas = Math.floor(segundosTotais / 3600);
+   const minutos = Math.floor((segundosTotais % 3600) / 60);
+   const segundos = segundosTotais % 60; 
+
+   const hStr = String(horas).padStart(2, '0');
+   const mStr = String(minutos).padStart(2, '0');
+   const sStr = String(segundos).padStart(2, '0');
+
+   if (horas > 0) {
+      return `${hStr}h ${mStr}m ${sStr}s`;
+   }
+
+   return `${mStr}m ${sStr}s`;
+}
+ 
 meuTimer = setInterval(drenarBateria, 1000);
 atualizarVisor(taxasConsumo.base);
