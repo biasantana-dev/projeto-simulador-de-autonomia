@@ -34,6 +34,8 @@ function calcularConsumoAtual() {
 function recalcularInterface() {
    const gastoAtual = calcularConsumoAtual();
    atualizarVisor(gastoAtual);
+
+   salvarConfiguracoes();
 }
 
 function drenarBateria() {
@@ -102,11 +104,24 @@ function salvarConfiguracoes() {
    localStorage.setItem('simuladorConfig', JSON.stringify(configuracoes));
 }
 
+function carregarConfiguracoes() {
+   const dadosSalvos = localStorage.getItem('simuladorConfig');
+
+   if (dadosSalvos) {
+      const config = JSON.parse(dadosSalvos);
+
+      wifi.checked = config.wifi;
+      redesSociais.checked = config.redesSociais;
+      jogo.checked = config.jogo;
+      brilho.value = config.brilho; 
+   }
+}
+
 wifi.addEventListener('change', recalcularInterface);
 redesSociais.addEventListener('change', recalcularInterface);
 jogo.addEventListener('change', recalcularInterface);
-
 brilho.addEventListener('input', recalcularInterface);
 
+carregarConfiguracoes();
+recalcularInterface();
 meuTimer = setInterval(drenarBateria, 1000);
-atualizarVisor(taxasConsumo.base);
