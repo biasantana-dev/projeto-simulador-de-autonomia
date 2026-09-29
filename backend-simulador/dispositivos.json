@@ -76,5 +76,17 @@
     "nome": "moto Edge",
     "bateriamAh": 5000,
     "consumoBase": 0.002315
+  },
+  {
+    "id": 14,
+    "nome": "Samsung Galaxy A56",
+    "bateriamAh": 5000,
+    "consumoBase": 0.002315
+  },
+  {
+    "id": 15,
+    "nome": "Samsung Galaxy A56",
+    "bateriamAh": 5000,
+    "consumoBase": 0.001389
   }
 ]
