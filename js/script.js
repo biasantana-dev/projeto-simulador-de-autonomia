@@ -24,7 +24,7 @@ const taxasConsumo = {
 //busca os aparelhos da API
 async function carregarDispositivos() {
    try {
-      const resposta = await fetch('http://localhost:3000/api/dispositivos');
+      const resposta = await fetch('https://projeto-simulador-de-autonomia.onrender.com/api/dispositivos');
 
       if (!resposta.ok) throw new Error('Falha ao conectar com o servidor');
 
@@ -71,7 +71,7 @@ if (formCadastro) {
       const novasHoras = document.getElementById('novas-horas').value;
 
       try {
-         const resposta = await fetch('http://localhost:3000/api/dispositivos', {
+         const resposta = await fetch('https://projeto-simulador-de-autonomia.onrender.com/api/dispositivos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
