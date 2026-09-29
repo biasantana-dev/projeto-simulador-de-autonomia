@@ -40,7 +40,7 @@ app.get('/api/dispositivos', (req, res) => {
 app.post('/api/dispositivos', (req, res) => {
    const { nome, bateriamAh, horasEstimadas } = req.body;
 
-   if (!nome || !bateriamAh || !horasEstimadas || Number(!horasEstimadas) <= 0) {
+   if (!nome || !bateriamAh || !horasEstimadas || Number(horasEstimadas) <= 0) {
       return res.status(400).json({erro: 'Preench todos os campos!'});
    }
 

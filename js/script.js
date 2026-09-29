@@ -5,39 +5,97 @@ const wifi = document.getElementById('wifi');
 const redesSociais = document.getElementById('redes-sociais');
 const jogo = document.getElementById('jogo');
 const brilho = document.getElementById('brilho');
+const seletorDispositivo = document.getElementById('seletor-dispositivo');
+const formCadastro = document.getElementById('form-cadastrar-dispositivo');
+const infoLegenda = document.getElementById('info');
+const btnReset = document.getElementById('btn-reset');
 
 let bateriaAtual = 100;
 let meuTimer = null;
 
 const taxasConsumo = {
-   base: 0.1,
-   wifi: 0.3,
-   redes: 0.5,
-   jogo: 1.5,
-   brilho: 0.8
+   base: 0.001389,
+   wifi: 0.0003,
+   redes: 0.0008,
+   jogo: 0.0030,   
+   brilho: 0.0015
 };
 
-async function carregarAparelhos() {
+//busca os aparelhos da API
+async function carregarDispositivos() {
    try {
       const resposta = await fetch('http://localhost:3000/api/dispositivos');
-      const aparelhos = await resposta.json();
 
-      const select = document.getElementById('aparelho');
+      if (!resposta.ok) throw new Error('Falha ao conectar com o servidor');
 
-      aparelhos.forEach(aparelho => {
-         const option = document.createElement('option')
-         option.value = aparelho.id;
-         option.textContent = `${aparelho.nome} (${aparelho.bateriamAh}mAh)`;
+      const dispositivos = await resposta.json();
 
-         option.dataset.consumoBase = aparelho.consumoBase;
-         select.appendChild(option);
+      seletorDispositivo.innerHTML = '';
+
+      dispositivos.forEach(dispositivo => {
+         const option = document.createElement('option');
+         option.value = dispositivo.id;
+         option.textContent = `${dispositivo.nome} (${dispositivo.bateriamAh}mAh)`;
+
+         // Guardamos o consumoBase e mAh em atributos data-* na própria tag <option>
+         option.dataset.consumoBase = dispositivo.consumoBase;
+         option.dataset.mah = dispositivo.bateriamAh;
+
+         seletorDispositivo.appendChild(option);
       });
+
+      atualizarDispositivoSelecionado();
    } catch (erro) {
-      console.log('Erro ao conectar com a API:', erro);
+      console.error("Erro na requisição GET:", erro);
+      infoLegenda.innerText = "Erro ao carregar aparelhos do servidor.";
    }
 }
 
-carregarAparelhos();
+function atualizarDispositivoSelecionado() {
+   const opcaoSelecionada = seletorDispositivo.options[seletorDispositivo.selectedIndex];
+
+   if (opcaoSelecionada) {
+      taxasConsumo.base = Number(opcaoSelecionada.dataset.consumoBase);
+      infoLegenda.innerHTML = `<i class="fa-solid fa-circle-info" style="color: rgb(255, 255, 255);"></i> Info: Calculado com base em ${opcaoSelecionada.dataset.mah}mAh`;
+
+      recalcularInterface();
+   }
+}
+
+if (formCadastro) {
+   formCadastro.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const novoNome = document.getElementById('novo-nome').value;
+      const novoMah = document.getElementById('novo-mah').value;
+      const novasHoras = document.getElementById('novas-horas').value;
+
+      try {
+         const resposta = await fetch('http://localhost:3000/api/dispositivos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+               nome: novoNome,
+               bateriamAh: Number(novoMah),
+               horasEstimadas: Number(novasHoras)
+            })
+         });
+
+         if (!resposta.ok) {
+            const erroData = await resposta.json();
+            alert(`Erro: ${erroData.erro}`);
+            return;
+         }
+
+         formCadastro.requestFullscreen();
+         await carregarDispositivos();
+         alert('Aparelho cadastrado com sucesso!');
+      } catch (erro) {
+         console.error('Erro no POST:', erro);
+         alert('Não foi possível conectar ao servidor.')
+      }
+   });
+}
 
 function calcularConsumoAtual() {
    let gasto = taxasConsumo.base;
@@ -46,7 +104,7 @@ function calcularConsumoAtual() {
    if (redesSociais.checked) gasto += taxasConsumo.redes;
    if (jogo.checked) gasto += taxasConsumo.jogo;
 
-   
+
    let percentualBrilho = brilho.value / 100;
    gasto += (taxasConsumo.brilho * percentualBrilho);
 
@@ -56,7 +114,6 @@ function calcularConsumoAtual() {
 function recalcularInterface() {
    const gastoAtual = calcularConsumoAtual();
    atualizarVisor(gastoAtual);
-
    salvarConfiguracoes();
 }
 
@@ -67,7 +124,7 @@ function drenarBateria() {
       atualizarVisor(0);
       return;
    }
-   
+
    const gastoDesseCiclo = calcularConsumoAtual();
    bateriaAtual -= gastoDesseCiclo;
 
@@ -102,7 +159,7 @@ function calcularTempoRestante(bateriaRestante, consumoPorSegundo) {
 
    const horas = Math.floor(segundosTotais / 3600);
    const minutos = Math.floor((segundosTotais % 3600) / 60);
-   const segundos = segundosTotais % 60; 
+   const segundos = segundosTotais % 60;
 
    const hStr = String(horas).padStart(2, '0');
    const mStr = String(minutos).padStart(2, '0');
@@ -135,15 +192,30 @@ function carregarConfiguracoes() {
       wifi.checked = config.wifi;
       redesSociais.checked = config.redesSociais;
       jogo.checked = config.jogo;
-      brilho.value = config.brilho; 
+      brilho.value = config.brilho;
    }
+}
+
+function resetarSimulacao() {
+   bateriaAtual = 100;
+   
+   if (meuTimer) clearInterval(meuTimer);
+
+   meuTimer = setInterval(drenarBateria, 1000);
+   recalcularInterface();
+}
+
+// Evento de clique
+if (btnReset) {
+   btnReset.addEventListener('click', resetarSimulacao);
 }
 
 wifi.addEventListener('change', recalcularInterface);
 redesSociais.addEventListener('change', recalcularInterface);
 jogo.addEventListener('change', recalcularInterface);
 brilho.addEventListener('input', recalcularInterface);
+seletorDispositivo.addEventListener('change', atualizarDispositivoSelecionado);
 
 carregarConfiguracoes();
-recalcularInterface();
+carregarDispositivos();
 meuTimer = setInterval(drenarBateria, 1000);

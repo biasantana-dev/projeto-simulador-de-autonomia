@@ -28,7 +28,7 @@ h2 {
 }
 
 .container {
-   margin: 20px 10px 10px; 
+   margin: 20px 10px 10px;
    padding: 15px 0px;
 }
 
@@ -90,7 +90,34 @@ h2 {
    display: flex;
    align-items: center;
    gap: 10px;
-   margin: 10px 0; 
+   margin: 10px 0;
+}
+
+.btn-acao {
+   margin-top: 15px;
+   padding: 10px 20px;
+   background-color: #333341;
+   color: #ffffff;
+   border: 1px solid #44445c;
+   border-radius: 8px;
+   font-size: 0.9rem;
+   font-weight: bold;
+   cursor: pointer;
+   transition: all 0.2s ease-in-out;
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.btn-acao:hover {
+   background-color: #3b3b4f;
+   border-color: #4caf50;
+   color: #4caf50;
+   transform: translateY(-2px);
+}
+
+.btn-acao:active {
+   transform: translateY(0);
 }
 
 .toggle-checkbox {
@@ -128,16 +155,16 @@ h2 {
 }
 
 #range-container {
-    display: flex;
-    margin-top: 10px;
-    align-items: center;
-    gap: 12px;     
-    flex-wrap: nowrap;
-    width: 100%;
+   display: flex;
+   margin-top: 10px;
+   align-items: center;
+   gap: 12px;
+   flex-wrap: nowrap;
+   width: 100%;
 }
 
 #range-container .controle-texto {
-    white-space: nowrap;
+   white-space: nowrap;
 }
 
 #brilho {
@@ -188,6 +215,101 @@ i {
    font-size: 0.95em;
 }
 
+#seletor-dispositivo {
+   width: 100%;
+   padding: 10px 14px;
+   background-color: #2b2b36;
+   color: #ffffff;
+   border: 1px solid #44445c;
+   border-radius: 8px;
+   font-size: 0.95rem;
+   cursor: pointer;
+   outline: none;
+   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#seletor-dispositivo:focus {
+   border-color: #4caf50;
+   box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+#seletor-dispositivo option {
+   background-color: #1e1e24;
+   color: #ffffff;
+   padding: 10px;
+}
+
+#form-cadastrar-dispositivo {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   margin-top: 10px;
+}
+
+#form-cadastrar-dispositivo input[type="text"],
+#form-cadastrar-dispositivo input[type="number"] {
+   width: 100%;
+   padding: 12px 14px;
+   background-color: #2b2b36;
+   color: #ffffff;
+   border: 1px solid #44445c;
+   border-radius: 8px;
+   font-size: 0.95em;
+   outline: none;
+   box-sizing: border-box;
+   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#form-cadastrar-dispositivo input::placeholder {
+   color: #8a8a9e;
+}
+
+#form-cadastrar-dispositivo input[type="text"]:focus,
+#form-cadastrar-dispositivo input[type="number"]:focus {
+   background-color: #2b2b36 !important;
+   color: #ffffff !important;
+   border-color: #4caf50;
+   box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+#btn-cadastrar {
+   width: 100%;
+   padding: 12px;
+   margin-top: 6px;
+   background-color: #4caf50;
+   color: #ffffff;
+   border: none;
+   border-radius: 8px;
+   font-size: 0.95em;
+   font-weight: bold;
+   cursor: pointer;
+   transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+#btn-cadastrar:hover {
+   background-color: #43a047;
+   box-shadow: 0 4px 1px rgba(76, 175, 80, 0.4);
+   transform: translateY(-2px);
+}
+
+#btn-cadastrar:active {
+   transform: translateY(0);
+}
+
+#form-cadastrar-dispositivo input:-webkit-autofill,
+#form-cadastrar-dispositivo input:-webkit-autofill:hover, 
+#form-cadastrar-dispositivo input:-webkit-autofill:focus, 
+#form-cadastrar-dispositivo input:-webkit-autofill:active {
+   -webkit-box-shadow: 0 0 0 30px #2b2b36 inset !important;
+   -webkit-text-fill-color: #ffffff !important;
+   transition: background-color 5000s ease-in-out 0s;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
 
 @media (min-width: 768px) {
    main {
@@ -208,8 +330,8 @@ i {
    }
 
    .container {
-      border-bottom: 1px solid  #424242;
-   }  
+      border-bottom: 1px solid #424242;
+   }
 
    #bateria-inicial {
       width: 250px;
@@ -228,7 +350,7 @@ i {
    h2 {
       font-size: 1.6em;
    }
-   
+
    #info {
       font-size: 1em;
    }

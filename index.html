@@ -20,38 +20,71 @@
          </div>
          <p id="porcentagem-atual"></p>
          <p id="tempo-restante"></p>
+         <p id="info"></p>
+
+         <button id="btn-reset" class="btn-acao">
+            <i class="fa-solid fa-rotate-right"></i> Recarregar Bateria
+         </button>
       </div>
       <div class="container">
+         <div class="container">
+            <h2>Dispositivo Simulado:</h2>
+            <div class="controle-item">
+               <select id="seletor-dispositivo"></select>
+            </div>
+         </div>
+
          <h2>Painel de Consumo:</h2>
          <div id="controles-container">
             <div class="controle-item">
-               <span class="controle-texto"><i class="fa-solid fa-wifi" style="color: rgb(255, 255, 255);"></i> Wi-Fi Ativo</span>
+               <span class="controle-texto"><i class="fa-solid fa-wifi" style="color: rgb(255, 255, 255);"></i> Wi-Fi
+                  Ativo</span>
                <input type="checkbox" name="wifi" id="wifi" class="toggle-checkbox">
                <label for="wifi" class="toggle-label"></label>
             </div>
 
             <div class="controle-item">
-               <span class="controle-texto"><i class="fa-solid fa-share-nodes" style="color: rgb(255, 255, 255);"></i> Redes Sociais</span>
+               <span class="controle-texto"><i class="fa-solid fa-share-nodes" style="color: rgb(255, 255, 255);"></i>
+                  Redes Sociais</span>
                <input type="checkbox" name="redes-sociais" id="redes-sociais" class="toggle-checkbox">
                <label for="redes-sociais" class="toggle-label"></label>
             </div>
 
             <div class="controle-item">
-               <span class="controle-texto"><i class="fa-solid fa-gamepad" style="color: rgb(255, 255, 255);"></i> Modo Jogo (Alta Perf.)</span>
+               <span class="controle-texto"><i class="fa-solid fa-gamepad" style="color: rgb(255, 255, 255);"></i> Modo
+                  Jogo (Alta Perf.)</span>
                <input type="checkbox" name="jogo" id="jogo" class="toggle-checkbox">
                <label for="jogo" class="toggle-label"></label>
             </div>
 
             <div id="range-container">
-               <span class="controle-texto" class="texto-span"><i class="fa-solid fa-sun" style="color: rgb(255, 255, 255);"></i>Brilho Máximo</span>
+               <span class="controle-texto" class="texto-span"><i class="fa-solid fa-sun"
+                     style="color: rgb(255, 255, 255);"></i>Brilho Máximo</span>
                <label for="brilho"></label>
                <input type="range" name="brilho" id="brilho" min="0" max="100" value="0">
             </div>
          </div>
       </div>
-      <select id="aparelho"></select>
+
+      <div class="container">
+         <h2>Cadastrar Novo Aparelho:</h2>
+         <form id="form-cadastrar-dispositivo">
+            <div class="controle-item">
+               <input type="text" id="novo-nome" placeholder="Nome (ex: Moto Edge 50)" required>
+            </div>
+            <div class="controle-item">
+               <input type="number" id="novo-mah" placeholder="Bateria (mAh, ex: 5000)" required>
+            </div>
+            <div class="controle-item">
+               <input type="number" id="novas-horas" placeholder="Autonomia Estimada em Horas (ex: 20)" step="0.5"
+                  required>
+            </div>
+            <button type="submit" id="btn-cadastrar">Cadastrar Aparelho</button>
+         </form>
+      </div>
    </main>
 
    <script src="js/script.js"></script>
 </body>
+
 </html>
